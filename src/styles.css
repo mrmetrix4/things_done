@@ -22,3 +22,9 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    line-height: 0%;
+}
