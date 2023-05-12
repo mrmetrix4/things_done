@@ -1,4 +1,4 @@
-:root {
+/* :root {
     font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 24px;
@@ -27,4 +27,16 @@ footer {
     position: absolute;
     bottom: 0;
     line-height: 0%;
+    width: calc(100% - 8px);
+    min-width: 25rem;
+    display: flex;
+    justify-content: space-between;
 }
+
+button {
+    border-radius: 999px;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 0 18px;
+    border: 0;
+} */

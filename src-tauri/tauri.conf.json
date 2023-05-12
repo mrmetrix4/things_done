@@ -25,7 +25,7 @@
                 "createDir": true,
                 "exists": true,
                 "readFile": true,
-                "scope": ["$APPCONFIG/**"],
+                "scope": ["**"],
                 "writeFile": true
             }
         },
@@ -51,10 +51,12 @@
             {
                 "fullscreen": false,
                 "resizable": true,
-                "alwaysOnTop": true,
+                "alwaysOnTop": false,
                 "title": "ThingsDone",
-                "width": 550,
-                "height": 800
+                "width": 425,
+                "height": 700,
+                "minWidth": 300,
+                "minHeight": 450
             }
         ]
     }

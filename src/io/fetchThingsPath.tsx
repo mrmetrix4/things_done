@@ -39,11 +39,11 @@ async function promptThingsPath(): Promise<string> {
 }
 
 async function fetchThingsPath(): Promise<string> {
-    const config: any = getConfig();
+    const config: any = await getConfig();
     if (config.thingsPath) {
         return config.thingsPath;
     }
-    const thingsPath: string = await promptThingsPath();
-    updateConf({ thingsPath: thingsPath });
-    return thingsPath;
+    return await promptThingsPath();
 }
+
+export default fetchThingsPath;

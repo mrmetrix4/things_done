@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { appWindow } from "@tauri-apps/api/window";
+
 function App() {
     return (
         <div className="container">
