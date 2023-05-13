@@ -21,8 +21,8 @@ async function updateConf(newConfig: any): Promise<void> {
     });
 }
 
-async function promptThingsPath(): Promise<string> {
-    const thingsPath = await open({
+async function promptTasksPath(): Promise<string> {
+    const tasksPath = await open({
         multiple: false,
         filters: [
             {
@@ -31,20 +31,20 @@ async function promptThingsPath(): Promise<string> {
             },
         ],
     });
-    if (!thingsPath || Array.isArray(thingsPath)) {
-        return promptThingsPath();
+    if (!tasksPath || Array.isArray(tasksPath)) {
+        return promptTasksPath();
     }
-    updateConf({ thingsPath: thingsPath });
-    return thingsPath;
+    updateConf({ tasksPath: tasksPath });
+    return tasksPath;
 }
 
-async function fetchThingsPath(): Promise<string> {
-    console.log("fetchThingsPath called.");
+async function fetchTasksPath(): Promise<string> {
+    console.log("fetchTasksPath called.");
     const config: any = await getConfig();
-    if (config.thingsPath) {
-        return config.thingsPath;
+    if (config.tasksPath) {
+        return config.tasksPath;
     }
-    return await promptThingsPath();
+    return await promptTasksPath();
 }
 
-export default fetchThingsPath;
+export default fetchTasksPath;

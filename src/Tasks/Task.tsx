@@ -6,7 +6,7 @@ class Task {
     description?: string;
     subtasks?: Task[];
     done: boolean = false;
-    isEditMode: boolean = false;
+    isEditMode?: true;
 
     constructor(title: string, description?: string) {
         this.id = uuidv4();

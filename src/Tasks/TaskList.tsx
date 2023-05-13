@@ -6,7 +6,9 @@ function TaskList() {
     const [tasks, setTasks] = useState<Task[]>([]);
 
     useEffect(() => {
-        loadTasks().then((res) => setTasks(res));
+        loadTasks()
+            .then((res) => setTasks(res))
+            .catch(() => setTasks([]));
     }, []);
 
     async function handleAddPsuedoTask() {
@@ -16,7 +18,11 @@ function TaskList() {
 
     return (
         <div>
-            <p>{tasks.map((t) => t.title)}</p>
+            {tasks.map((t, index) => (
+                <p key={index}>
+                    {t.title}:{t.description}
+                </p>
+            ))}
             <button onClick={handleAddPsuedoTask}>Add task</button>
             <button onClick={() => console.log(tasks)}>View tasks</button>
             <button onClick={() => dumpTasks(tasks)}>Dump tasks</button>
