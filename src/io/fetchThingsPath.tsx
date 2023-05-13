@@ -39,6 +39,7 @@ async function promptThingsPath(): Promise<string> {
 }
 
 async function fetchThingsPath(): Promise<string> {
+    console.log("fetchThingsPath called.");
     const config: any = await getConfig();
     if (config.thingsPath) {
         return config.thingsPath;
