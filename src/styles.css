@@ -32,11 +32,57 @@ footer {
     display: flex;
     justify-content: space-between;
 }
-
+*/
 button {
     border-radius: 999px;
     box-sizing: border-box;
     cursor: pointer;
     padding: 0 18px;
-    border: 0;
-} */
+    border: 1px solid rgb(0, 0, 0);
+    background-color: darkred;
+    color: aliceblue;
+}
+
+* {
+    box-sizing: border-box;
+    /* border: 2px solid red; */
+}
+nav {
+    min-width: 375;
+    height: fit-content;
+    line-height: 0;
+}
+nav > ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+}
+nav > ul > li > .icon > svg {
+    width: auto;
+    height: 1.5rem;
+    float: right;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon > .itemys {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+nav > ul > .righty {
+    float: right;
+}
+
+.none {
+    visibility: hidden;
+}
