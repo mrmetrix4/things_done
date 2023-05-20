@@ -69,8 +69,8 @@
                 "decorations": false,
                 "transparent": true,
                 "title": "ThingsDone",
-                "width": 425,
-                "height": 700,
+                "width": 350,
+                "height": 600,
                 "minWidth": 300,
                 "minHeight": 450
             }

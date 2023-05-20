@@ -1,42 +1,59 @@
 import TaskList from "./Tasks/TaskList";
-import { open } from "@tauri-apps/api/shell";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { appWindow } from "@tauri-apps/api/window";
+import "./style/titlebar.css";
+import "./styles.css";
 
 function App() {
-    const [menuLinks, setMenuLinks] = useState(false);
-    async function handleMenuClick() {
-        console.log("Clicked");
-        setMenuLinks((prevState) => !prevState);
-    }
+    const [alwaysOnTop, setAlwaysOnTop] = useState(false);
+
+    useEffect(() => {
+        appWindow.setAlwaysOnTop(alwaysOnTop);
+    }, [alwaysOnTop]);
 
     return (
         <>
             <nav data-tauri-drag-region className="titlebar">
-                <h1 className="logo">ThingsDone</h1>
+                <div className="left-side-menu">
+                    <h1 data-tauri-drag-region className="logo">
+                        ThingsDone
+                    </h1>
+                </div>
                 <div className="right-side-menu">
                     <img
-                        className="menu-button menu-folder"
+                        draggable="false"
+                        className="menu-button menu-button-dark-hover"
                         alt="change path"
                         src="/assets/window_folder.svg"
+                        onClick={() => console.log("Not implemented yet")}
                     />
                     <img
-                        className="menu-button menu-pushpin"
+                        draggable="false"
+                        className="menu-button menu-button-dark-hover"
+                        alt="set always on top"
                         src="/assets/window_pushpin.svg"
+                        onClick={() => setAlwaysOnTop(!alwaysOnTop)}
                     />
                     <img
+                        draggable="false"
                         src="/assets/window_minimize.svg"
                         alt="minimize"
-                        className="menu-button menu-minimize"
+                        className="menu-button menu-button-dark-hover"
+                        onClick={() => appWindow.minimize()}
                     />
                     <img
+                        draggable="false"
                         src="/assets/window_maximize.svg"
                         alt="maximize"
-                        className="menu-button menu-maximize"
+                        className="menu-button menu-button-dark-hover"
+                        onClick={() => appWindow.toggleMaximize()}
                     />
                     <img
+                        draggable="false"
                         src="/assets/window_close.svg"
                         alt="close"
-                        className="menu-button menu-close"
+                        className="menu-button menu-button-red-hover"
+                        onClick={() => appWindow.close()}
                     />
                 </div>
             </nav>

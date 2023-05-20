@@ -1,0 +1,69 @@
+@font-face {
+    font-family: "LogoFont";
+    font-weight: 100;
+    src: local("MADEINFINITY PERSONALUSE-Thin"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Thin.otf") format("opentype");
+}
+@font-face {
+    font-family: "LogoFont";
+    font-weight: 200;
+    src: local("MADEINFINITY PERSONALUSE-Light"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Light.otf") format("opentype");
+}
+@font-face {
+    font-family: "LogoFont";
+    font-weight: normal;
+    src: local("MADEINFINITY PERSONALUSE-Regular"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Regular.otf") format("opentype");
+}
+@font-face {
+    font-family: "LogoFont";
+    font-weight: bold;
+    src: local("MADEINFINITY PERSONALUSE-Medium"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Medium.otf") format("opentype");
+}
+@font-face {
+    font-family: "LogoFont";
+    font-weight: 900;
+    src: local("MADEINFINITY PERSONALUSE-Black"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Black.otf") format("opentype");
+}
+
+.titlebar {
+    padding: 0 4px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e5cedc;
+    position: sticky;
+    inset: 0;
+}
+
+.logo {
+    margin: 0;
+    font-family: "LogoFont";
+    font-weight: 900;
+}
+
+/* Right side menu and the buttons */
+
+.right-side-menu {
+    display: flex;
+}
+
+.menu-button {
+    padding: 4px 4px;
+}
+
+.menu-button:hover {
+    transition: 0.3s;
+}
+
+.menu-button-dark-hover:hover {
+    background: hsl(0 0% 0% / 0.2);
+}
+
+.menu-button-red-hover:hover {
+    background: hsla(0, 100%, 50%, 0.2);
+}
