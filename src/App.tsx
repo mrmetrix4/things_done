@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faL } from "@fortawesome/free-solid-svg-icons";
 import TaskList from "./Tasks/TaskList";
 import { open } from "@tauri-apps/api/shell";
 import { useState } from "react";
@@ -13,34 +11,34 @@ function App() {
 
     return (
         <>
-            <nav role="navigation" className="main-nav" id="main-nav">
-                <ul id="main-nav-list">
-                    <h1>Things to do</h1>
-                    <li>
-                        <div className="icon">
-                            <div
-                                className="itemys"
-                                style={{
-                                    display: menuLinks ? "flex" : "none",
-                                }}
-                            >
-                                <button onClick={() => console.log("clickMu")}>
-                                    click me
-                                </button>
-                                <button onClick={() => console.log("clickMe")}>
-                                    click mu
-                                </button>
-                            </div>
-                            <svg
-                                onClick={handleMenuClick}
-                                viewBox="0 0 100 100"
-                                className="icon"
-                            >
-                                <FontAwesomeIcon icon={faBars} />
-                            </svg>
-                        </div>
-                    </li>
-                </ul>
+            <nav data-tauri-drag-region className="titlebar">
+                <h1 className="logo">ThingsDone</h1>
+                <div className="right-side-menu">
+                    <img
+                        className="menu-button menu-folder"
+                        alt="change path"
+                        src="/assets/window_folder.svg"
+                    />
+                    <img
+                        className="menu-button menu-pushpin"
+                        src="/assets/window_pushpin.svg"
+                    />
+                    <img
+                        src="/assets/window_minimize.svg"
+                        alt="minimize"
+                        className="menu-button menu-minimize"
+                    />
+                    <img
+                        src="/assets/window_maximize.svg"
+                        alt="maximize"
+                        className="menu-button menu-maximize"
+                    />
+                    <img
+                        src="/assets/window_close.svg"
+                        alt="close"
+                        className="menu-button menu-close"
+                    />
+                </div>
             </nav>
             <div className="container">
                 <TaskList />
