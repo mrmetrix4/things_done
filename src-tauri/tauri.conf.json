@@ -18,6 +18,7 @@
                 "open": true
             },
             "dialog": {
+                "all": false,
                 "open": true
             },
             "fs": {
@@ -27,6 +28,19 @@
                 "readFile": true,
                 "scope": ["**"],
                 "writeFile": true
+            },
+            "window": {
+                "all": false,
+                "setAlwaysOnTop": true,
+                "setResizable": false,
+                "close": true,
+                "hide": true,
+                "show": true,
+                "maximize": true,
+                "minimize": true,
+                "unmaximize": true,
+                "unminimize": true,
+                "startDragging": true
             }
         },
         "bundle": {
@@ -52,6 +66,8 @@
                 "fullscreen": false,
                 "resizable": true,
                 "alwaysOnTop": false,
+                "decorations": false,
+                "transparent": true,
                 "title": "ThingsDone",
                 "width": 425,
                 "height": 700,
