@@ -27,7 +27,13 @@
                 "exists": true,
                 "readFile": true,
                 "scope": ["**"],
-                "writeFile": true
+                "writeFile": true,
+                "copyFile": true,
+                "readDir": true,
+                "removeFile": true
+            },
+            "path": {
+                "all": true
             },
             "window": {
                 "all": false,

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { dumpTasks, loadTasks } from "./tasksIo";
 import Task from "./Task";
-import { event } from "@tauri-apps/api";
 
 function TaskList() {
     const [tasks, setTasks] = useState<Task[]>([]);

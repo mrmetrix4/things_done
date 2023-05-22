@@ -1,19 +1,13 @@
 import Task from "./Task";
-import fetchTasksPath from "../io/fetchTasksPath";
-import readJsonFile from "../io/readJsonFile";
-import writeJsonFile from "../io/writeJsonFile";
-import { useState } from "react";
+import { readDataFile, writeDataFile } from "../io/dataIo";
 
-var tasksPath: string;
+const tasksFilePath: string = "tasks.json";
 
 export async function loadTasks(): Promise<Task[]> {
-    if (!tasksPath) {
-        tasksPath = await fetchTasksPath();
-    }
-    const tasks: Task[] = await readJsonFile(tasksPath);
+    const tasks: Task[] = await readDataFile(tasksFilePath);
     return tasks;
 }
 
 export async function dumpTasks(tasks: Task[]): Promise<void> {
-    await writeJsonFile(tasksPath, tasks);
+    await writeDataFile(tasksFilePath, tasks);
 }

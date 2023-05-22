@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { appWindow } from "@tauri-apps/api/window";
 import "./style/titlebar.css";
 import "./styles.css";
+import { getDataDir, setDataDir } from "./io/dataIo";
+import { copyFile } from "@tauri-apps/api/fs";
 
 function App() {
     const [alwaysOnTop, setAlwaysOnTop] = useState(false);
@@ -25,7 +27,7 @@ function App() {
                         className="menu-button menu-button-dark-hover"
                         alt="change path"
                         src="/assets/window_folder.svg"
-                        onClick={() => console.log("Not implemented yet")}
+                        onClick={setDataDir}
                     />
                     <img
                         draggable="false"
@@ -59,10 +61,10 @@ function App() {
             </nav>
             <div className="container">
                 <TaskList />
-                <footer>
-                    <p>Designed and developed by Adar Arbiv</p>
-                </footer>
             </div>
+            <footer>
+                <p>Designed and developed by Adar Arbiv</p>
+            </footer>
         </>
     );
 }
