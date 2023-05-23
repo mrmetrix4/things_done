@@ -1,0 +1,19 @@
+.taskcomponent p {
+    display: inline;
+    margin: 0;
+}
+
+li {
+    display: flex;
+    align-content: center;
+}
+
+.expand-arrow {
+    stroke: gray;
+    rotate: -90deg;
+    transition: 0.3s;
+}
+
+.expand-arrow[aria-expanded="true"] {
+    rotate: 0deg;
+}

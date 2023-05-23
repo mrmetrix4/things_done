@@ -1,0 +1,15 @@
+.main-tasks {
+    padding: 0 8px;
+}
+
+.main-tasks h2 {
+    font-family: "LogoFont";
+    font-weight: normal;
+    font-size: 1.3rem;
+    margin: 0;
+    letter-spacing: -0.05ch;
+}
+
+.no-margin-left > div {
+    margin-left: 0;
+}

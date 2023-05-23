@@ -43,6 +43,7 @@
 body {
     margin: 0;
     color: #1e1e1f;
+    overflow-x: hidden;
 }
 .fullscreen {
     height: 100vh;
@@ -51,4 +52,16 @@ body {
 }
 p {
     margin: 0.5em;
+}
+
+ul {
+    all: unset;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
 }

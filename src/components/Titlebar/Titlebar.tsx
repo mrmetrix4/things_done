@@ -13,9 +13,9 @@ function Navbar() {
     return (
         <nav data-tauri-drag-region className="titlebar">
             <div className="left-side-menu">
-                <h1 data-tauri-drag-region className="logo">
+                <span data-tauri-drag-region className="logo">
                     ThingsDone
-                </h1>
+                </span>
             </div>
             <div className="right-side-menu">
                 <img
