@@ -1,0 +1,43 @@
+/* Main styling  */
+
+.titlebar {
+    padding: 0 4px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e5cedc;
+    position: sticky;
+    inset: 0;
+    border-radius: var(--body-border-radius) var(--body-border-radius) 0 0;
+}
+
+.logo {
+    margin: 0 0 0 4px;
+    font-size: 1.3rem;
+    font-family: "LogoFont";
+    font-weight: 900;
+}
+
+/* Right side menu and the buttons */
+
+.right-side-menu {
+    display: flex;
+}
+
+.menu-button {
+    padding: 4px 4px;
+}
+
+.menu-button:hover {
+    transition: 0.3s;
+}
+
+.menu-button-dark-hover:hover {
+    background: hsl(0 0% 0% / 0.2);
+}
+
+.menu-button-red-hover:hover {
+    background: hsla(0, 100%, 50%, 0.2);
+    border-radius: 0 5px 0 0;
+}

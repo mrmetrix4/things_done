@@ -1,6 +1,7 @@
+import "./tasklist.css";
 import { useEffect, useState } from "react";
-import { dumpTasks, loadTasks } from "./tasksIo";
-import Task from "./Task";
+import { dumpTasks, loadTasks } from "../../Tasks/tasksIo";
+import Task from "../../Tasks/Task";
 
 function TaskList() {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -25,7 +26,8 @@ function TaskList() {
     }
 
     return (
-        <div>
+        <div className="tasklist">
+            <h2>Time to get things done!</h2>
             {tasks.map((t, index) => (
                 <p key={index}>
                     <input

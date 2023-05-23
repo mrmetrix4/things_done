@@ -1,27 +1,54 @@
 :root {
     box-sizing: border-box;
     user-select: none;
+
+    --body-border-radius: 5px;
 }
+
+/* Logo font */
+
+@font-face {
+    font-family: "LogoFont";
+    font-weight: 100;
+    src: local("MADEINFINITY PERSONALUSE-Thin"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Thin.otf") format("opentype");
+}
+@font-face {
+    font-family: "LogoFont";
+    font-weight: 200;
+    src: local("MADEINFINITY PERSONALUSE-Light"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Light.otf") format("opentype");
+}
+@font-face {
+    font-family: "LogoFont";
+    font-weight: normal;
+    src: local("MADEINFINITY PERSONALUSE-Regular"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Regular.otf") format("opentype");
+}
+@font-face {
+    font-family: "LogoFont";
+    font-weight: bold;
+    src: local("MADEINFINITY PERSONALUSE-Medium"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Medium.otf") format("opentype");
+}
+@font-face {
+    font-family: "LogoFont";
+    font-weight: 900;
+    src: local("MADEINFINITY PERSONALUSE-Black"),
+        url("./fonts/MADEINFINITY PERSONALUSE-Black.otf") format("opentype");
+}
+
+/* Global stylings */
 
 body {
     margin: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f3eaf4;
     color: #1e1e1f;
 }
-.container {
-    padding: 8px;
+.fullscreen {
+    height: 100vh;
+    background-color: #f3eaf4;
+    border-radius: var(--body-border-radius);
 }
-
-footer {
-    position: absolute;
-    bottom: 8px;
-    width: 100%;
-    text-align: center;
-}
-footer > p {
-    margin: 0;
-    font-weight: bold;
-    font-family: "LogoFont";
+p {
+    margin: 0.5em;
 }
