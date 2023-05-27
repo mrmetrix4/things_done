@@ -5,8 +5,17 @@
 
 li {
     display: flex;
-    align-content: center;
     align-items: center;
+    justify-content: space-between;
+}
+
+li > .left-side {
+    display: flex;
+    align-items: center;
+}
+
+li > .right-side {
+    line-height: 0;
 }
 
 .expand-arrow {
@@ -17,4 +26,16 @@ li {
 
 .expand-arrow[aria-expanded="true"] {
     rotate: 0deg;
+}
+
+.remove-task-button {
+    visibility: hidden;
+    padding: 4px;
+    background-color: hsla(0, 100%, 50%, 0.2);
+    border-radius: 100vw;
+    aspect-ratio: 1/1;
+}
+
+li:hover .remove-task-button {
+    visibility: visible;
 }

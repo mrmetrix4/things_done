@@ -80,6 +80,29 @@ export function useTasksDispatch() {
     return dispatchTasks;
 }
 
+function findAllSubtasks(
+    taskList: ITask[],
+    removeIDs: Set<string>
+): Set<string> {
+    if (taskList.length === 0) {
+        return removeIDs;
+    }
+    for (const tempTask of taskList) {
+        if (
+            removeIDs.has(tempTask.id) ||
+            (tempTask.parentTaskID && removeIDs.has(tempTask.parentTaskID))
+        ) {
+            removeIDs.add(tempTask.id);
+            findAllSubtasks(
+                taskList.filter((t) => t.parentTaskID === tempTask.id),
+                removeIDs
+            );
+        }
+    }
+
+    return removeIDs;
+}
+
 function tasksReducer(prevTasks: ITask[], action: DispatchTaskAction): ITask[] {
     switch (action.type) {
         case "asyncInit": {
@@ -95,6 +118,12 @@ function tasksReducer(prevTasks: ITask[], action: DispatchTaskAction): ITask[] {
                     parentTaskID: action.parentTaskID,
                 },
             ];
+        case "remove":
+            const idsToRemove = findAllSubtasks(
+                prevTasks,
+                new Set([action.task.id])
+            );
+            return prevTasks.filter((t) => !idsToRemove.has(t.id));
         default: {
             console.log(action);
             return prevTasks;
