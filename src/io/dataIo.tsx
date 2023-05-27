@@ -27,8 +27,6 @@ async function getConfig(): Promise<any> {
 }
 
 async function copyDirFiles(oldDir: string, newDir: string) {
-    console.log(oldDir);
-    console.log(newDir);
     const fileEntries: FileEntry[] = await readDir(oldDir);
     for (const entry of fileEntries) {
         if (entry.children || !entry.name) {

@@ -3,13 +3,16 @@ import Titlebar from "./components/Titlebar/Titlebar";
 import Footer from "./components/Footer/Footer";
 import TaskList from "./components/TasksList/TasksList";
 import MainTasks from "./components/MainTasks/MainTasks";
+import { TasksProvider } from "./Tasks/TasksContext";
 
 function App() {
     return (
         <div className="fullscreen">
-            <Titlebar />
-            <MainTasks />
-            <Footer />
+            <TasksProvider>
+                <Titlebar />
+                <MainTasks />
+                <Footer />
+            </TasksProvider>
         </div>
     );
 }

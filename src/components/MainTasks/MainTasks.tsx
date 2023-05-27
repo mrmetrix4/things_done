@@ -1,21 +1,18 @@
 import "./maintasks.css";
-import { useEffect, useState } from "react";
-import { dumpTasks, loadTasks } from "../../Tasks/tasksIo";
-import Task from "../../Tasks/Task";
+import { dumpTasks } from "../../Tasks/tasksIo";
 import TasksList from "../TasksList/TasksList";
+import { useTasks } from "../../Tasks/TasksContext";
+import { useTasksDispatch } from "../../Tasks/TasksContext";
+import { useRef, MouseEvent } from "react";
 
 function MainTasks() {
-    const [allTasks, setAllTasks] = useState<Task[]>([]);
+    const allTasks = useTasks();
+    const dispatchTasks = useTasksDispatch();
+    const taskInputRef = useRef("");
 
-    useEffect(() => {
-        loadTasks()
-            .then((res) => setAllTasks(res))
-            .catch(() => setAllTasks([]));
-    }, []);
-
-    async function handleAddPsuedoTask() {
-        const nTask = new Task("AnotherSomthing!", "With description!");
-        setAllTasks((prevAllTasks) => [...prevAllTasks, nTask]);
+    function handleAddTask(event: any) {
+        event.preventDefault();
+        console.log(event.target.task_title.value);
     }
 
     return (
@@ -23,10 +20,33 @@ function MainTasks() {
             <h2>
                 Time to get <span className="italic bold">things done!</span>
             </h2>
+            <form className="addtask" onSubmit={handleAddTask}>
+                <input
+                    name="task_title"
+                    type="text"
+                    className="addtask__input"
+                    placeholder="A thing to complete!"
+                />
+                <label>
+                    <input type="submit" />
+                    <img
+                        draggable="false"
+                        className="addtask__img"
+                        alt="add task"
+                        src="/assets/add_task.svg"
+                    />
+                </label>
+            </form>
             <div className="no-margin-left">
-                <TasksList tasks={allTasks} />
+                <TasksList />
             </div>
-            <button onClick={handleAddPsuedoTask}>Add task</button>
+            <button
+                onClick={() =>
+                    dispatchTasks({ type: "add", title: "Psuedo task" })
+                }
+            >
+                Add task
+            </button>
             <button onClick={() => console.log(allTasks)}>View tasks</button>
             <button onClick={() => dumpTasks(allTasks)}>Dump tasks</button>
         </div>
