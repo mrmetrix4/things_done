@@ -1,5 +1,4 @@
 import "./taskslist.css";
-import { useMemo } from "react";
 import Task from "../Task/Task";
 import { ITask, useTasks } from "../../Tasks/TasksContext";
 
@@ -9,16 +8,9 @@ interface ITasksListProps {
 
 function TasksList(props: ITasksListProps) {
     const tasks = useTasks();
-    const filteredTasks = useMemo(
-        () =>
-            props.parentTaskID
-                ? tasks.filter(
-                      (task) => task.parentTaskID === props.parentTaskID
-                  )
-                : tasks.filter((task) => !task.parentTaskID),
-        [tasks]
-    );
-
+    const filteredTasks = props.parentTaskID
+        ? tasks.filter((task) => task.parentTaskID === props.parentTaskID)
+        : tasks.filter((task) => !task.parentTaskID);
     return (
         <div className="tasklist">
             <ul>

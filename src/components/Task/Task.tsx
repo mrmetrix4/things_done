@@ -1,5 +1,5 @@
 import "./task.css";
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import TasksList from "../TasksList/TasksList";
 import { ITask, useTasks, useTasksDispatch } from "../../Tasks/TasksContext";
 
@@ -8,11 +8,7 @@ function Task(props: { task: ITask }) {
     const tasks = useTasks();
     const dispatchTasks = useTasksDispatch();
     const [subtasksExpanded, setSubtasksExpanded] = useState(false);
-
-    const subtasks = useMemo(
-        () => tasks.filter((t) => t.parentTaskID === task.id),
-        [tasks]
-    );
+    const subtasks = tasks.filter((t) => t.parentTaskID === task.id);
 
     function handleTaskCheckboxChange(e: ChangeEvent<HTMLInputElement>): void {
         console.log("Function not implemented.");
