@@ -18,6 +18,10 @@
     padding: 10px 0;
 }
 
+.addtask > label {
+    line-height: 0;
+}
+
 .addtask__input {
     width: 100%;
 }
@@ -31,10 +35,6 @@
 .addtask__img:hover {
     background-color: hsl(0, 0%, 100%);
     border-radius: 50%;
-}
-
-.addtask input[type="submit"] {
-    display: none;
 }
 
 .no-margin-left > div {

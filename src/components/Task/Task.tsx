@@ -1,13 +1,9 @@
-import "./taskcomponent.css";
+import "./task.css";
 import { ChangeEvent, useMemo, useState } from "react";
 import TasksList from "../TasksList/TasksList";
 import { ITask, useTasks } from "../../Tasks/TasksContext";
 
-interface ITaskComponentProps {
-    task: ITask;
-}
-
-function TaskComponent(props: ITaskComponentProps) {
+function Task(props: { task: ITask }) {
     const { task } = props;
     const tasks = useTasks();
     const [subtasksExpanded, setSubtasksExpanded] = useState(false);
@@ -23,7 +19,7 @@ function TaskComponent(props: ITaskComponentProps) {
 
     return (
         <>
-            <li className="taskcomponent">
+            <li className="task">
                 <img
                     style={{
                         visibility:
@@ -52,4 +48,4 @@ function TaskComponent(props: ITaskComponentProps) {
     );
 }
 
-export default TaskComponent;
+export default Task;

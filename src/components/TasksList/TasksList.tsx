@@ -1,6 +1,6 @@
 import "./taskslist.css";
 import { useMemo } from "react";
-import TaskComponent from "../TaskComponent/TaksComponent";
+import Task from "../Task/Task";
 import { ITask, useTasks } from "../../Tasks/TasksContext";
 
 interface ITasksListProps {
@@ -23,7 +23,7 @@ function TasksList(props: ITasksListProps) {
         <div className="tasklist">
             <ul>
                 {filteredTasks.map((task: ITask, index: number) => {
-                    return <TaskComponent task={task} key={index} />;
+                    return <Task task={task} key={index} />;
                 })}
             </ul>
         </div>

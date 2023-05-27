@@ -3,16 +3,17 @@ import { dumpTasks } from "../../Tasks/tasksIo";
 import TasksList from "../TasksList/TasksList";
 import { useTasks } from "../../Tasks/TasksContext";
 import { useTasksDispatch } from "../../Tasks/TasksContext";
-import { useRef, MouseEvent } from "react";
+import { useRef, MouseEvent, useEffect } from "react";
 
 function MainTasks() {
     const allTasks = useTasks();
     const dispatchTasks = useTasksDispatch();
-    const taskInputRef = useRef("");
 
     function handleAddTask(event: any) {
         event.preventDefault();
-        console.log(event.target.task_title.value);
+        const title_input = event.target.task_title;
+        dispatchTasks({ type: "add", title: title_input.value });
+        title_input.value = "";
     }
 
     return (
@@ -22,13 +23,20 @@ function MainTasks() {
             </h2>
             <form className="addtask" onSubmit={handleAddTask}>
                 <input
+                    onInput={(e: any) => e.target.setCustomValidity("")}
+                    onInvalid={(e: any) =>
+                        e.target.setCustomValidity(
+                            "Don't show off your laziness!"
+                        )
+                    }
+                    required
                     name="task_title"
                     type="text"
                     className="addtask__input"
                     placeholder="A thing to complete!"
                 />
                 <label>
-                    <input type="submit" />
+                    <input type="submit" style={{ display: "none" }} />
                     <img
                         draggable="false"
                         className="addtask__img"
