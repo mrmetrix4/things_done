@@ -6,10 +6,11 @@
 li {
     display: flex;
     align-content: center;
+    align-items: center;
 }
 
 .expand-arrow {
-    stroke: gray;
+    width: 0.45em;
     rotate: -90deg;
     transition: 0.3s;
 }

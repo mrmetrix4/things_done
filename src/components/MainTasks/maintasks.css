@@ -1,5 +1,5 @@
 .main-tasks {
-    padding: 0 8px;
+    padding: 0 0.5rem;
 }
 
 .main-tasks h2 {
@@ -15,7 +15,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    padding: 10px 0;
+    padding: 0.5em 0;
 }
 
 .addtask > label {
@@ -29,7 +29,7 @@
 .addtask__img {
     width: 1em;
     height: 1em;
-    padding: 0.25rem;
+    padding: 0.25em;
 }
 
 .addtask__img:hover {
