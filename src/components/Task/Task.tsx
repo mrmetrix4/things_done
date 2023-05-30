@@ -11,7 +11,12 @@ function Task(props: { task: ITask }) {
     const subtasks = tasks.filter((t) => t.parentTaskID === task.id);
 
     function handleTaskCheckboxChange(e: ChangeEvent<HTMLInputElement>): void {
-        console.log("Function not implemented.");
+        if (task.doneTime) {
+            task.doneTime = undefined;
+        } else {
+            task.doneTime = new Date();
+        }
+        dispatchTasks({ type: "edit", task: task });
     }
 
     return (

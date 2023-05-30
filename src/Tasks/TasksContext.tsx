@@ -8,6 +8,7 @@ import {
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { loadTasks } from "./tasksIo";
+import { C } from "@tauri-apps/api/path-c062430b";
 
 export interface ITask {
     id: string;
@@ -20,7 +21,6 @@ export interface ITask {
 
 type DispatchTaskAction =
     | { type: "asyncInit"; initTasks: ITask[] }
-    | { type: "reload" }
     | {
           type: "add";
           title: string;
@@ -28,7 +28,6 @@ type DispatchTaskAction =
           parentTaskID?: string;
       }
     | { type: "edit"; task: ITask }
-    | { type: "done"; task: ITask }
     | { type: "remove"; task: ITask };
 
 const TasksContext = createContext<ITask[]>([]);
@@ -123,10 +122,15 @@ function tasksReducer(prevTasks: ITask[], action: DispatchTaskAction): ITask[] {
                 prevTasks,
                 new Set([action.task.id])
             );
-            return prevTasks.filter((t) => !idsToRemove.has(t.id));
-        default: {
+            return prevTasks.filter(
+                (tempTask) => !idsToRemove.has(tempTask.id)
+            );
+        case "edit":
+            return prevTasks.map((tempTask) =>
+                tempTask.id === action.task.id ? action.task : tempTask
+            );
+        default:
             console.log(action);
             return prevTasks;
-        }
     }
 }
