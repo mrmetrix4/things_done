@@ -51,14 +51,6 @@ function DndTasksList(props: IDndTasksListProps) {
                 )}
             </StrictModeDroppable>
         </DragDropContext>
-
-        // <div className="tasklist">
-        //     <ul>
-        //         {filteredTasks.map((task: ITask, index: number) => {
-        //             return <Task task={task} key={index} />;
-        //         })}
-        //     </ul>
-        // </div>
     );
 }
 
