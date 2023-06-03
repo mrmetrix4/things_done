@@ -1,16 +1,16 @@
+import { open } from "@tauri-apps/api/dialog";
 import {
+    BaseDirectory,
+    FileEntry,
+    copyFile,
     createDir,
     exists,
-    BaseDirectory,
-    copyFile,
     readDir,
-    FileEntry,
     removeFile,
 } from "@tauri-apps/api/fs";
+import { appDataDir, join } from "@tauri-apps/api/path";
 import readJsonFile from "./readJsonFile";
 import writeJsonFile from "./writeJsonFile";
-import { open } from "@tauri-apps/api/dialog";
-import { appDataDir, join } from "@tauri-apps/api/path";
 
 const configFilename: string = "things-done.json";
 const configDir: number = BaseDirectory.AppConfig;

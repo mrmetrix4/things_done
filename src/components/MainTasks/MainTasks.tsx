@@ -1,9 +1,7 @@
-import "./maintasks.css";
+import { useTasks, useTasksDispatch } from "../../Tasks/TasksContext";
 import { dumpTasks } from "../../Tasks/tasksIo";
-import TasksList from "../TasksList/TasksList";
-import { useTasks } from "../../Tasks/TasksContext";
-import { useTasksDispatch } from "../../Tasks/TasksContext";
-import { useRef, MouseEvent, useEffect } from "react";
+import DndTasksList from "../DndTasksList/DndTasksList";
+import "./maintasks.css";
 
 function MainTasks() {
     const allTasks = useTasks();
@@ -46,7 +44,7 @@ function MainTasks() {
                 </label>
             </form>
             <div className="no-margin-left">
-                <TasksList />
+                <DndTasksList />
             </div>
             <button
                 onClick={() =>

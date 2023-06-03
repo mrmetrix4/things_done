@@ -1,7 +1,7 @@
-import "./titlebar.css";
+import { appWindow } from "@tauri-apps/api/window";
 import { useEffect, useState } from "react";
 import { setDataDir } from "../../io/dataIo";
-import { appWindow } from "@tauri-apps/api/window";
+import "./titlebar.css";
 
 function Navbar() {
     const [alwaysOnTop, setAlwaysOnTop] = useState(false);

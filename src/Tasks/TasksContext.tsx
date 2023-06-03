@@ -4,11 +4,10 @@ import {
     useContext,
     useEffect,
     useReducer,
-    useState,
 } from "react";
+import { DropResult } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 import { loadTasks } from "./tasksIo";
-import { C } from "@tauri-apps/api/path-c062430b";
 
 export interface ITask {
     id: string;
@@ -18,17 +17,6 @@ export interface ITask {
     parentTaskID?: string;
     doneTime?: Date;
 }
-
-type DispatchTaskAction =
-    | { type: "asyncInit"; initTasks: ITask[] }
-    | {
-          type: "add";
-          title: string;
-          description?: string;
-          parentTaskID?: string;
-      }
-    | { type: "edit"; task: ITask }
-    | { type: "remove"; task: ITask };
 
 const TasksContext = createContext<ITask[]>([]);
 const TasksDispatchContext = createContext<Dispatch<DispatchTaskAction> | null>(
@@ -102,6 +90,18 @@ function findAllSubtasks(
     return removeIDs;
 }
 
+type DispatchTaskAction =
+    | { type: "asyncInit"; initTasks: ITask[] }
+    | {
+          type: "add";
+          title: string;
+          description?: string;
+          parentTaskID?: string;
+      }
+    | { type: "edit"; task: ITask }
+    | { type: "reorder"; result: DropResult }
+    | { type: "remove"; task: ITask };
+
 function tasksReducer(prevTasks: ITask[], action: DispatchTaskAction): ITask[] {
     switch (action.type) {
         case "asyncInit": {
@@ -129,6 +129,12 @@ function tasksReducer(prevTasks: ITask[], action: DispatchTaskAction): ITask[] {
             return prevTasks.map((tempTask) =>
                 tempTask.id === action.task.id ? action.task : tempTask
             );
+        case "reorder":
+            if (!action.result.destination) return prevTasks;
+            const newTasks = [...prevTasks];
+            const task = newTasks.splice(action.result.source.index, 1)[0];
+            newTasks.splice(action.result.destination.index, 0, task);
+            return newTasks;
         default:
             console.log(action);
             return prevTasks;

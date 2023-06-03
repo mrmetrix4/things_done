@@ -1,7 +1,7 @@
-import "./task.css";
 import { ChangeEvent, useState } from "react";
-import TasksList from "../TasksList/TasksList";
 import { ITask, useTasks, useTasksDispatch } from "../../Tasks/TasksContext";
+import DndTasksList from "../DndTasksList/DndTasksList";
+import "./task.css";
 
 function Task(props: { task: ITask }) {
     const { task } = props;
@@ -57,7 +57,7 @@ function Task(props: { task: ITask }) {
                     />
                 </div>
             </li>
-            {subtasksExpanded && <TasksList parentTaskID={task.id} />}
+            {subtasksExpanded && <DndTasksList parentTaskID={task.id} />}
         </>
     );
 }

@@ -1,5 +1,5 @@
-import { ITask } from "./TasksContext";
 import { readDataFile, writeDataFile } from "../io/dataIo";
+import { ITask } from "./TasksContext";
 
 const tasksFilePath: string = "tasks.json";
 
