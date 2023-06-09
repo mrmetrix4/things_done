@@ -10,7 +10,11 @@ function MainTasks() {
     function handleAddTask(event: any) {
         event.preventDefault();
         const title_input = event.target.task_title;
-        dispatchTasks({ type: "add", title: title_input.value });
+        dispatchTasks({
+            type: "add",
+            title: title_input.value,
+            parentTask: allTasks[0],
+        });
         title_input.value = "";
     }
 

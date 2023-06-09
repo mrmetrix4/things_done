@@ -1,3 +1,5 @@
+import { arch } from "os";
+import { title } from "process";
 import {
     Dispatch,
     createContext,
@@ -13,8 +15,7 @@ export interface ITask {
     id: string;
     title: string;
     description?: string;
-    subtasksIDs?: string[];
-    parentTaskID?: string;
+    subtasks?: ITask[];
     doneTime?: Date;
 }
 
@@ -61,33 +62,10 @@ export function useTasksDispatch() {
     const dispatchTasks = useContext(TasksDispatchContext);
     if (!dispatchTasks) {
         throw Error(
-            "useTasksDispatch must be used inside TodoContext.Provider"
+            "useTasksDispatch must be used inside TasksContext.Provider"
         );
     }
     return dispatchTasks;
-}
-
-function findAllSubtasks(
-    taskList: ITask[],
-    removeIDs: Set<string>
-): Set<string> {
-    if (taskList.length === 0) {
-        return removeIDs;
-    }
-    for (const tempTask of taskList) {
-        if (
-            removeIDs.has(tempTask.id) ||
-            (tempTask.parentTaskID && removeIDs.has(tempTask.parentTaskID))
-        ) {
-            removeIDs.add(tempTask.id);
-            findAllSubtasks(
-                taskList.filter((t) => t.parentTaskID === tempTask.id),
-                removeIDs
-            );
-        }
-    }
-
-    return removeIDs;
 }
 
 type DispatchTaskAction =
@@ -96,45 +74,62 @@ type DispatchTaskAction =
           type: "add";
           title: string;
           description?: string;
-          parentTaskID?: string;
+          parentTask?: ITask;
       }
     | { type: "edit"; task: ITask }
-    | { type: "reorder"; result: DropResult }
     | { type: "remove"; task: ITask };
+
+function removeTask(
+    parentTasks: ITask[] | undefined,
+    taskToRemove: ITask
+): ITask[] | undefined {
+    if (!parentTasks) return undefined;
+    return parentTasks
+        .filter((tempTask) => tempTask.id !== taskToRemove.id)
+        .map((tempTask) => {
+            return {
+                ...tempTask,
+                subtasks: removeTask(tempTask.subtasks, taskToRemove),
+            };
+        });
+}
 
 function tasksReducer(prevTasks: ITask[], action: DispatchTaskAction): ITask[] {
     switch (action.type) {
         case "asyncInit": {
             return action.initTasks;
         }
-        case "add":
-            return [
-                ...prevTasks,
-                {
-                    id: uuidv4(),
-                    title: action.title,
-                    description: action.description,
-                    parentTaskID: action.parentTaskID,
-                },
-            ];
-        case "remove":
-            const idsToRemove = findAllSubtasks(
-                prevTasks,
-                new Set([action.task.id])
-            );
-            return prevTasks.filter(
-                (tempTask) => !idsToRemove.has(tempTask.id)
-            );
-        case "edit":
+
+        case "add": {
+            const newTask: ITask = {
+                id: uuidv4(),
+                title: action.title,
+                description: action.description,
+            };
+            const parentTask = structuredClone(action.parentTask);
+            if (!parentTask) return [...prevTasks, newTask];
+            if (!parentTask.subtasks) {
+                parentTask.subtasks = [newTask];
+            } else {
+                parentTask.subtasks.push(newTask);
+            }
+            return tasksReducer(prevTasks, {
+                type: "edit",
+                task: parentTask,
+            });
+        }
+
+        case "remove": {
+            const newTasks = removeTask(prevTasks, action.task);
+            return newTasks ? newTasks : [];
+        }
+
+        case "edit": {
             return prevTasks.map((tempTask) =>
                 tempTask.id === action.task.id ? action.task : tempTask
             );
-        case "reorder":
-            if (!action.result.destination) return prevTasks;
-            const newTasks = [...prevTasks];
-            const task = newTasks.splice(action.result.source.index, 1)[0];
-            newTasks.splice(action.result.destination.index, 0, task);
-            return newTasks;
+        }
+
         default:
             console.log(action);
             return prevTasks;

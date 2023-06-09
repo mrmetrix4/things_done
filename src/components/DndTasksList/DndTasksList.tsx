@@ -1,24 +1,23 @@
 import { DragDropContext, Draggable, DropResult } from "react-beautiful-dnd";
-import { useTasks, useTasksDispatch } from "../../Tasks/TasksContext";
+import { ITask, useTasks, useTasksDispatch } from "../../Tasks/TasksContext";
 import { StrictModeDroppable } from "../DndList/StrictModeDroppable";
 import Task from "../Task/Task";
 import "./dndtaskslist.css";
 
 interface IDndTasksListProps {
-    parentTaskID?: string;
+    tasks?: ITask[];
 }
 
-function DndTasksList(props: IDndTasksListProps) {
+function DndTasksList({ tasks }: IDndTasksListProps) {
+    if (!tasks) {
+        tasks = useTasks();
+    }
     const dispatchTasks = useTasksDispatch();
-    const tasks = useTasks();
-    const filteredTasks = props.parentTaskID
-        ? tasks.filter((task) => task.parentTaskID === props.parentTaskID)
-        : tasks.filter((task) => !task.parentTaskID);
     return (
         <div className="tasklist">
             <DragDropContext
                 onDragEnd={(result: DropResult) => {
-                    dispatchTasks({ type: "reorder", result: result });
+                    console.log(result);
                 }}
             >
                 <StrictModeDroppable droppableId="tasklist">
@@ -27,7 +26,7 @@ function DndTasksList(props: IDndTasksListProps) {
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                         >
-                            {filteredTasks.map((task, index) => {
+                            {tasks?.map((task, index) => {
                                 return (
                                     <Draggable
                                         key={task.id}

@@ -5,10 +5,9 @@ import "./task.css";
 
 function Task(props: { task: ITask }) {
     const { task } = props;
-    const tasks = useTasks();
     const dispatchTasks = useTasksDispatch();
     const [subtasksExpanded, setSubtasksExpanded] = useState(false);
-    const subtasks = tasks.filter((t) => t.parentTaskID === task.id);
+    const subtasks = task.subtasks;
 
     function handleTaskCheckboxChange(e: ChangeEvent<HTMLInputElement>): void {
         if (task.doneTime) {
@@ -26,7 +25,9 @@ function Task(props: { task: ITask }) {
                     <img
                         style={{
                             visibility:
-                                subtasks.length === 0 ? "hidden" : "visible",
+                                subtasks && subtasks.length > 0
+                                    ? "visible"
+                                    : "hidden",
                         }}
                         className="expand-arrow"
                         alt="expand subtasks"
@@ -57,7 +58,7 @@ function Task(props: { task: ITask }) {
                     />
                 </div>
             </li>
-            {subtasksExpanded && <DndTasksList parentTaskID={task.id} />}
+            {subtasksExpanded && <DndTasksList tasks={task.subtasks} />}
         </>
     );
 }
