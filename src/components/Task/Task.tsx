@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
-import { ITask, useTasks, useTasksDispatch } from "../../Tasks/TasksContext";
-import DndTasksList from "../DndTasksList/DndTasksList";
+import { ITask, useTasksDispatch } from "../../Tasks/TasksContext";
+import TasksList from "../TasksList/TasksList";
 import "./task.css";
 
 function Task(props: { task: ITask }) {
@@ -58,7 +58,7 @@ function Task(props: { task: ITask }) {
                     />
                 </div>
             </li>
-            {subtasksExpanded && <DndTasksList tasks={task.subtasks} />}
+            {subtasksExpanded && <TasksList tasks={task.subtasks} />}
         </>
     );
 }

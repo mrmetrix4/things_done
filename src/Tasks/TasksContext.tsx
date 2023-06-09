@@ -1,5 +1,3 @@
-import { arch } from "os";
-import { title } from "process";
 import {
     Dispatch,
     createContext,
@@ -7,7 +5,6 @@ import {
     useEffect,
     useReducer,
 } from "react";
-import { DropResult } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 import { loadTasks } from "./tasksIo";
 

@@ -1,6 +1,6 @@
 import { useTasks, useTasksDispatch } from "../../Tasks/TasksContext";
 import { dumpTasks } from "../../Tasks/tasksIo";
-import DndTasksList from "../DndTasksList/DndTasksList";
+import TasksList from "../TasksList/TasksList";
 import "./maintasks.css";
 
 function MainTasks() {
@@ -47,9 +47,7 @@ function MainTasks() {
                     />
                 </label>
             </form>
-            <div className="no-margin-left">
-                <DndTasksList />
-            </div>
+            <div className="no-margin-left">{<TasksList />}</div>
             <button
                 onClick={() =>
                     dispatchTasks({ type: "add", title: "Psuedo task" })
