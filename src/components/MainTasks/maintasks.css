@@ -1,5 +1,7 @@
 .main-tasks {
     padding: 0 0.5rem;
+    height: 90dvh;
+    overflow-y: auto;
 }
 
 .main-tasks h2 {

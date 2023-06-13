@@ -1,6 +1,7 @@
 import { useTasks, useTasksDispatch } from "../../Tasks/TasksContext";
 import { dumpTasks } from "../../Tasks/tasksIo";
 import TasksList from "../TasksList/TasksList";
+import { SortableTree } from "../Tree/SortableTree";
 import "./maintasks.css";
 
 function MainTasks() {
@@ -57,6 +58,7 @@ function MainTasks() {
             </button>
             <button onClick={() => console.log(allTasks)}>View tasks</button>
             <button onClick={() => dumpTasks(allTasks)}>Dump tasks</button>
+            <SortableTree />
         </div>
     );
 }

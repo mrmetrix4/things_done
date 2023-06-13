@@ -44,9 +44,10 @@ body {
     margin: 0;
     color: #1e1e1f;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 .fullscreen {
-    height: 100dvh;
+    min-height: 100dvh;
     display: grid;
     grid-template-rows: auto 1fr auto;
     background-color: #f3eaf4;
