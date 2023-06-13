@@ -10,33 +10,6 @@
     letter-spacing: -0.05ch;
 }
 
-.addtask {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    padding: 0.5em 0;
-}
-
-.addtask > label {
-    line-height: 0;
-}
-
-.addtask__input {
-    width: 100%;
-}
-
-.addtask__img {
-    width: 1em;
-    height: 1em;
-    padding: 0.25em;
-}
-
-.addtask__img:hover {
-    background-color: hsl(0, 0%, 100%);
-    border-radius: 50%;
-}
-
 .no-margin-left > div {
     margin-left: 0;
 }
